@@ -2,7 +2,8 @@ import { createRouter, createWebHistory } from "vue-router";
 
 // Import the views components
 import Home from '../views/Home.vue';
-import Contact from '../views/Contact.vue'
+import Category from '../views/Category.vue'
+import Ingredient from '../views/Ingredient.vue'
 
 const routes = [
     {
@@ -10,16 +11,25 @@ const routes = [
         name: 'home',
         component: Home
     },
+
     {
-        path: '/contact',
-        name: 'contact',
-        component: Contact
+        path: '/ingredient',
+        name: 'ingredient',
+        component: Ingredient
+    },
+
+    {
+        path: '/category',
+        name: 'category',
+        component: Category
     }
 ]
 
 const router = createRouter({
     history: createWebHistory(),
     routes,
+    linkActiveClass: 'active-link',
+    linkExactActiveClass: 'exact-active-link',
 })
 
 
