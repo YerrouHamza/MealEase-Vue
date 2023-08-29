@@ -10,22 +10,34 @@
                     </svg>
                 </div>
                 <input type="text" v-model="mealByname" class="block max-w-[90vw] w-[500px] p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Search meals by name" required>
-                <button class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">Search</button>
+                <button type="button" class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2" @click="searchMealsByName">Search</button>
             </div>
         </form>
     </header>
+
+    <pre>
+        {{ meals }}
+    </pre>
     
 </template>
 
 <script setup>
-    import { computed, ref, watch } from 'vue';
+    import { computed, onMounted, ref, watch } from 'vue';
     import { useStore } from 'vuex';
 
     const mealByname = ref('');
     const store = useStore();
-    
     const meals = computed(() => store.state.meals)
 
+
+
+    const searchMealsByName = () => {
+        store.dispatch('searchMealsByName', mealByname.value)
+    }
+
+    onMounted((
+        store.dispatch('getRandomMeals')
+    ))
 </script>
 
 <style scoped>
