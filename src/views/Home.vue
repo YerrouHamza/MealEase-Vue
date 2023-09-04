@@ -22,6 +22,7 @@
                 :title="meal.strMeal"
                 :discription="meal.strInstructions"
                 :image="meal.strMealThumb"
+                :id="meal.idMeal"
             />
         </div>
     </section>
