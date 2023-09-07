@@ -29,9 +29,9 @@
 </template>
 
 <script setup>
+    import MealsCard from '../components/mealscard.vue';
     import { computed, onMounted, ref } from 'vue';
     import { useStore } from 'vuex';
-    import MealsCard from '../components/mealsCard.vue';
 
     const mealByname = ref('');
     const store = useStore();

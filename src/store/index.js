@@ -4,7 +4,8 @@ import mealsAPI from "../axiosClient";
 
 const store = createStore({
     state: {
-        meals: []
+        meals: [],
+        mealsDetails: []
     },
 
     // mutations
@@ -18,6 +19,11 @@ const store = createStore({
         searchMealsByName(state, newMeals) {
             state.meals = newMeals;
         },
+
+        // get the targeted meals details
+        getMealDetails(state, mealsDetails) {
+            state.mealsDetails = mealsDetails;
+        }
     },
 
     // actions
@@ -46,6 +52,18 @@ const store = createStore({
                 })
                 .catch(({error}) => {
                     console.error(error)
+                })
+        },
+
+        // get the meal Details from the API
+        async getMealDetails({ commit }, mealID) {
+            console.log('test');
+            await mealsAPI.get(`lookup.php?i=${mealID}`)
+                .then(({ data }) => {
+                    commit('getMealDetails', data.meals[0])
+                })
+                .catch(({ error }) => {
+                    console.log(error);
                 })
         }
 
