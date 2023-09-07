@@ -29,16 +29,17 @@
 
 </template>
 
-<script setup> 
-    import { onMounted } from 'vue'
-    import { Dropdown } from 'flowbite';
+<script setup>
+  import { onMounted } from 'vue'
+  import { initFlowbite, Dropdown } from 'flowbite'
 
-    
-
-    // initialize components based on data attribute selectors
-    onMounted(() => {
-        Dropdown();
-    })
+  // initialize components based on data attribute selectors
+  onMounted(() => {
+      initFlowbite();
+      Dropdown({
+        target: '#navbar-default', // Specify the correct target element
+      });
+  })
 </script>
 
 
