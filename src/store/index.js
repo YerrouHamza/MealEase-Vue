@@ -57,7 +57,6 @@ const store = createStore({
 
         // get the meal Details from the API
         async getMealDetails({ commit }, mealID) {
-            console.log('test');
             await mealsAPI.get(`lookup.php?i=${mealID}`)
                 .then(({ data }) => {
                     commit('getMealDetails', data.meals[0])
