@@ -40,24 +40,14 @@
         <p class="mb-8 text-lg font-normal text-gray-900 lg:text-xl ">{{ meal.strInstructions }}</p>
 
         <div class="grid grid-cols-2 gap-8">
-            <img class="h-full w-full rounded-xl mb-10" :src="meal.strMealThumb" :alt="meal.strMeal">
+            <img class="h-full w-full rounded-xl" :src="meal.strMealThumb" :alt="meal.strMeal">
 
             <div class="grid md:grid-cols-1 gap-8">
                 <div class="bg-gray-50 border border-gray-200 rounded-lg p-8">
-                    <h2 class="text-gray-900 text-3xl font-extrabold mb-10">Ingredient</h2>
-                    <ul class="d-flex flex gap-x-3 gap-y-4 flex-wrap">
+                    <h2 class="text-gray-900 text-3xl font-extrabold mb-10">Ingredient And Measure</h2>
+                    <ul class="flex flex-col gap-x-3 gap-y-4 flex-wrap">
                         <template v-for="ind in 20" key="ind">
-                            <li class="bg-green-100 py-1 px-5 rounded-lg text-sm font-semibold"
-                                v-if="meal[`strIngredient${ind}`]"> {{ meal[`strIngredient${ind}`] }} </li>
-                        </template>
-                    </ul>
-                </div>
-                <div class="bg-gray-50 border border-gray-200 rounded-lg p-8">
-                    <h2 class="text-gray-900 text-3xl font-extrabold mb-10">Measure</h2>
-                    <ul class="d-flex flex gap-x-3 gap-y-4 flex-wrap">
-                        <template v-for="ind in 20" key="ind">
-                            <li class="bg-green-100 py-1 px-5 rounded-lg text-sm font-semibold"
-                                v-if="meal[`strMeasure${ind}`]"> {{ meal[`strMeasure${ind}`] }} </li>
+                            <li class="font-semibold" v-if="meal[`strIngredient${ind}`]"> {{ meal[`strIngredient${ind}`] }}:&nbsp;<span class="bg-green-100 py-1 px-5 rounded-lg text-sm ">{{ meal[`strMeasure${ind}`] }}</span> </li>
                         </template>
                     </ul>
                 </div>
@@ -69,8 +59,6 @@
                 </a>
             </div>
         </div>
-        
-
     </section>
 
 </template>
