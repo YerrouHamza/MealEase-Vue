@@ -5,7 +5,8 @@ import mealsAPI from "../axiosClient";
 const store = createStore({
     state: {
         meals: [],
-        mealsDetails: []
+        mealsDetails: [],
+        mealsCategorys: []
     },
 
     // mutations
@@ -23,6 +24,11 @@ const store = createStore({
         // get the targeted meals details
         getMealDetails(state, mealsDetails) {
             state.mealsDetails = mealsDetails;
+        },
+
+        // get all the meals categorys
+        getMealsCategorys(state, categore) {
+            state.mealsCategorys = categore;
         }
     },
 
@@ -64,7 +70,21 @@ const store = createStore({
                 .catch(({ error }) => {
                     console.log(error);
                 })
+        },
+
+        // get all categores
+        async getMealsCategorys({commit}) {
+       console.log('test 1');
+
+            mealsAPI.get('categories.php')
+                .then(({data}) => {
+                    commit('getMealsCategorys', data.categories);
+                })
+                .catch(({error}) => {
+                    console.log(error);
+                })
         }
+
 
     },
 
