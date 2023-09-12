@@ -6,7 +6,8 @@ const store = createStore({
     state: {
         meals: [],
         mealsDetails: [],
-        mealsCategorys: []
+        mealsCategorys: [],
+        allCategoryMeals: []
     },
 
     // mutations
@@ -29,6 +30,11 @@ const store = createStore({
         // get all the meals categorys
         getMealsCategorys(state, categore) {
             state.mealsCategorys = categore;
+        },
+
+
+        getAllMealsByCategory(state, newMeals ) {
+            state.allCategoryMeals = newMeals;
         }
     },
 
@@ -74,13 +80,23 @@ const store = createStore({
 
         // get all categores
         async getMealsCategorys({commit}) {
-       console.log('test 1');
-
             mealsAPI.get('categories.php')
                 .then(({data}) => {
                     commit('getMealsCategorys', data.categories);
                 })
                 .catch(({error}) => {
+                    console.log(error);
+                })
+        },
+
+        // get All Meals By Category
+        async getAllMealsByCategory({commit}, categoreName) {
+            await mealsAPI.get(`/filter.php?c=${categoreName}`)
+                .then(({ data }) => {
+                    // debugger;
+                    commit('getAllMealsByCategory', data.meals)
+                })
+                .catch(({ error }) => {
                     console.log(error);
                 })
         }
