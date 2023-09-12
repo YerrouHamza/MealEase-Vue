@@ -17,7 +17,7 @@
     import { onMounted, computed } from 'vue';
     import { useStore } from 'vuex';
 
-    import MealsCategoryCard from '../components/MealsCategoryCard.vue';
+    import MealsCategoryCard from '../components/mealscategorycard.vue';
 
     const store = useStore();
     const mealsCategorys = computed(() => store.state.mealsCategorys)
