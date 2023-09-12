@@ -21,7 +21,7 @@ const routes = [
     },
 
     {
-        path: '/category',
+        path: '/categorys',
         name: 'category',
         component: Category
     },
@@ -33,7 +33,7 @@ const routes = [
     },
 
     {
-        path: '/allMeals/:id?',
+        path: '/categorys/meals/:id?',
         name: 'alleMeals',
         component: AllMeals,
     },
