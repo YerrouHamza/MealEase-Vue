@@ -1,7 +1,8 @@
 <template>
+    <section class="container py-10 px-4 mx-auto max-w-screen-xl">
+        <GoBackBtn/>
 
-    <section class="container py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
-        <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 mb-10">
+        <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 mb-10 mt-20">
             <div class="flex flex-col justify-center">
                 <h2 class="mb-10 text-xl font-extrabold tracking-tight leading-none text-gray-900 md:text-2xl lg:text-4xl">{{ meal.strMeal }}</h2>
                 <div class="bg-gray-50 border border-gray-200 rounded-lg p-8 md:p-12">
@@ -68,6 +69,8 @@
     import { useStore } from 'vuex';
     import { useRoute } from 'vue-router';
 
+    import GoBackBtn from '../components/GoBackBtn.vue';
+    
     const store = useStore();
     const route = useRoute();
 
