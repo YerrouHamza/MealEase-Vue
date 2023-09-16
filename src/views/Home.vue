@@ -10,12 +10,12 @@
                     </svg>
                 </div>
                 <input type="text" v-model="mealByname" class="block max-w-[90vw] w-[500px] p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Search meals by name">
-                <button type='submit' class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2" @click="searchMealsByName">Search</button>
+                <button class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2" @click="searchMealsByName">Search</button>
             </div>
         </form>
     </header>
 
-    <section class="lg:container mx-auto mt-7 p-4">
+    <section class="container mx-auto mt-7 p-4">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-6">
             <MealsCard 
                 v-for="meal in meals" :key="meal.idMeal"
@@ -29,23 +29,27 @@
 </template>
 
 <script setup>
-    import { computed, onMounted, ref } from 'vue'
-    import { useStore } from 'vuex'
+    import { computed, onMounted, ref } from 'vue';
+    import { useRouter, useRoute } from 'vue-router';
+    import { useStore } from 'vuex';
     
     import MealsCard from '../components/MealsCard.vue';
     
     const mealByname = ref('');
     const store = useStore();
-    const meals = computed(() => store.state.meals)
+    const router = useRouter();
+    const route = useRoute();
+    const meals = computed(() => store.state.meals);
 
     const searchMealsByName = () => {
         store.dispatch('searchMealsByName', mealByname.value)
-
-    }
+        mealByname.value ? router.push({query: {meal: mealByname.value}}) : router.replace({'query': null});
+    };
 
     onMounted((
-        store.dispatch('getRandomMeals')
-    ))
+        mealByname.value = route.query.meal,
+        route.query.meal ? store.dispatch('searchMealsByName', mealByname.value) : store.dispatch('getRandomMeals')
+    ));
 </script>
 
 <style scoped>
