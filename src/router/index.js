@@ -27,16 +27,17 @@ const routes = [
     },
 
     {
-        path: '/meal/:id?',
-        name: 'singleMeal',
-        component: SingleMeal,
-    },
-
-    {
         path: '/categorys/meals/:id?',
         name: 'alleMeals',
         component: AllMeals,
     },
+
+
+    {
+        path: '/meal/:id?',
+        name: 'singleMeal',
+        component: SingleMeal,
+    }
 ]
 
 const router = createRouter({
