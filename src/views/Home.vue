@@ -17,13 +17,14 @@
 
     <section class="container max-w-screen-xl mx-auto mt-7 p-4">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-6">
-            <MealsCard 
+            <MealsCard v-if="meals.length > 0"
                 v-for="meal in meals" :key="meal.idMeal"
                 :title="meal.strMeal"
                 :description="meal.strInstructions"
                 :image="meal.strMealThumb"
                 :id="meal.idMeal"
             />
+            <SkeletonCardMeal v-for="n in 5" :key="n" v-else />
         </div>
     </section>
 </template>
@@ -34,6 +35,7 @@
     import { useStore } from 'vuex';
     
     import MealsCard from '../components/MealsCard.vue';
+    import SkeletonCardMeal from '../components/SkeletonCardMeal.vue';
     
     const mealByname = ref('');
     const store = useStore();

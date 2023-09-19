@@ -58,9 +58,13 @@ const store = createStore({
 
         // search Meals by name by API Request function
         async searchMealsByName({ commit }, newMeals) {
+            commit('searchMealsByName', '');
+
             await mealsAPI.get(`search.php?s=${newMeals}`)
                 .then(({ data }) => {
-                    commit('searchMealsByName', data.meals)
+                    setTimeout(() => {
+                        commit('searchMealsByName', data.meals)
+                    }, 1000);
                 })
                 .catch(({error}) => {
                     console.error(error)
@@ -91,10 +95,13 @@ const store = createStore({
 
         // get All Meals By Category
         async getAllMealsByCategory({commit}, categoreName) {
+            commit('getAllMealsByCategory', '')
+
             await mealsAPI.get(`/filter.php?c=${categoreName}`)
                 .then(({ data }) => {
-                    // debugger;
-                    commit('getAllMealsByCategory', data.meals)
+                    setTimeout(()=> {
+                        commit('getAllMealsByCategory', data.meals)
+                    }, 1000)
                 })
                 .catch(({ error }) => {
                     console.log(error);
