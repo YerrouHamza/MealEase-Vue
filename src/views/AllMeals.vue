@@ -1,5 +1,5 @@
 <template>
-    <section class="container mx-auto mt-10 px-4">
+    <section class="container max-w-screen-xl mx-auto mt-10 px-4">
         <GoBackBtn/>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-6 mt-10">
             <MealsCard 

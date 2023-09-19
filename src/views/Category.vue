@@ -3,7 +3,7 @@
         <h1 class="text-xl md:text-3xl lg:text-4xl font-semibold text-gray-100">Find Your Meals By <span class="font-bold uppercase underline underline-offset-8 pl-2">Category</span></h1>
     </header>
     
-    <section class="container m-auto p-4 mt-10">
+    <section class="container max-w-screen-xl m-auto p-4 mt-10">
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
             <MealsCategoryCard v-for="category in mealsCategorys" :key="category.idCategory"
                 :category="category.strCategory"
