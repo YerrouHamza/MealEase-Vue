@@ -15,7 +15,7 @@
 
 <script setup>
     import { onMounted, computed } from 'vue';
-    import { useStore } from 'vuex';
+    import { useStore } from 'vuex'
 
     import MealsCategoryCard from '../components/mealscategorycard.vue';
 

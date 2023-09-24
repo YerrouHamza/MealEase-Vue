@@ -64,7 +64,7 @@ const store = createStore({
                 .then(({ data }) => {
                     setTimeout(() => {
                         commit('searchMealsByName', data.meals)
-                    }, 1000);
+                    }, 500);
                 })
                 .catch(({error}) => {
                     console.error(error)
@@ -73,9 +73,12 @@ const store = createStore({
 
         // get the meal Details from the API
         async getMealDetails({ commit }, mealID) {
+            commit('getMealDetails', '');
             await mealsAPI.get(`lookup.php?i=${mealID}`)
                 .then(({ data }) => {
-                    commit('getMealDetails', data.meals[0])
+                    setTimeout(() => {
+                        commit('getMealDetails', data.meals[0])
+                    }, 500);
                 })
                 .catch(({ error }) => {
                     console.log(error);
@@ -101,7 +104,7 @@ const store = createStore({
                 .then(({ data }) => {
                     setTimeout(()=> {
                         commit('getAllMealsByCategory', data.meals)
-                    }, 1000)
+                    }, 500)
                 })
                 .catch(({ error }) => {
                     console.log(error);
