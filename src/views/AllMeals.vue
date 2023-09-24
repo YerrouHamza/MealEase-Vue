@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-    import { computed, onMounted, onUnmounted } from 'vue';
+    import { computed, onMounted } from 'vue';
     import { useRoute } from 'vue-router';
     import { useStore } from 'vuex';
 
