@@ -4,8 +4,14 @@
 
         <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 mb-10 mt-20">
             <div class="flex flex-col justify-center">
-                <h2 class="mb-10 text-xl font-extrabold tracking-tight leading-none text-gray-900 md:text-2xl lg:text-4xl">{{ meal.strMeal }}</h2>
-                <div class="bg-gray-50 border border-gray-200 rounded-lg p-8 md:p-12">
+                <!-- Title -->
+                <h2 class="mb-10 text-xl font-extrabold tracking-tight leading-none text-gray-900 md:text-2xl lg:text-4xl" v-if="isLoad">
+                    {{ meal.strMeal }}
+                </h2>
+                <div role="status" class="max-w-sm animate-pulse"><div class="bg-gray-200 h-4 mb-8 rounded-full"></div></div>
+
+                <!-- meal details table -->
+                <div class="bg-gray-50 border border-gray-200 rounded-lg p-8 md:p-12" v-if="isLoad">
                     <dl class="max-w-md text-gray-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
                         <div class="flex flex-col pb-3" v-show="meal.strCategory">
                             <dt class="mb-1 text-gray-500 md:text-lg">The Meal Categories</dt>
@@ -23,11 +29,28 @@
                                 {{ meal.strTags }}
                             </dd>
                         </div>
-
                     </dl>
                 </div>
+                <div role="status" class="px-8 py-12 space-y-10 border border-gray-200 divide-y divide-gray-200 rounded shadow animate-pulse" v-else>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
+                            <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                        </div>
+                        <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+                    </div>
+                    <div class="flex items-center justify-between pt-10">
+                        <div>
+                            <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
+                            <div class="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                        </div>
+                        <div class="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
+                    </div>
+                </div>
             </div>
-            <div class="mx-auto object-cover lg:max-w-xl rounded-lg shadow-xl">
+
+            <!-- Youtube video -->
+            <div class="mx-auto object-cover lg:max-w-xl rounded-lg shadow-xl" v-if="isLoad">
                 <iframe
                 width="560"
                 height="100%"
@@ -36,9 +59,19 @@
                 allowfullscreen
                 ></iframe>
             </div>
+            <div role="status" class="animate-pulse"><div class="bg-gray-200 h-full w-11/12"></div></div>
         </div>
     
-        <p class="mb-8 text-lg font-normal text-gray-900 lg:text-xl ">{{ meal.strInstructions }}</p>
+        <!-- Youtube video -->
+        <p class="mb-8 text-lg font-normal text-gray-900 lg:text-xl" v-if="isLoad">{{ meal.strInstructions }}</p>
+        <div role="status" class="animate-pulse mb-10">
+            <div class="h-3 bg-gray-200 rounded-full mb-3"></div>
+            <div class="h-3 bg-gray-200 rounded-full mb-3"></div>
+            <div class="h-3 bg-gray-200 rounded-full mb-3"></div>
+            <div class="h-3 bg-gray-200 rounded-full mb-3"></div>
+            <div class="h-3 bg-gray-200 rounded-full max-w-[360px]"></div>
+        </div>
+
 
         <div class="grid grid-cols-2 gap-8">
             <img class="h-full w-full rounded-xl" :src="meal.strMealThumb" :alt="meal.strMeal">
@@ -65,7 +98,7 @@
 </template>
 
 <script setup>
-    import { onMounted, computed } from 'vue';
+    import { onMounted, computed, ref } from 'vue';
     import { useStore } from 'vuex';
     import { useRoute } from 'vue-router';
 
@@ -73,6 +106,12 @@
     
     const store = useStore();
     const route = useRoute();
+    const isLoad = ref(false);
+
+
+    setTimeout(() => {
+        isLoad.value = true;
+    }, 500);
 
 
     const meal = computed(() => store.state.mealsDetails)
