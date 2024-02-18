@@ -5,10 +5,11 @@
     
     <section class="container max-w-screen-xl m-auto p-4 mt-10">
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-            <MealsCategoryCard v-for="category in mealsCategorys" :key="category.idCategory"
+            <!-- <MealsCategoryCard v-for="category in mealsCategorys" :key="category.idCategory"
                 :category="category.strCategory"
                 :discription="category.strCategoryDescription"
-                :image="category.strCategoryThumb" />
+                :image="category.strCategoryThumb" 
+            /> -->
         </div>
     </section>
 </template>
@@ -16,8 +17,8 @@
 <script setup>
     import { onMounted, computed } from 'vue';
     import { useStore } from 'vuex'
-
-    import MealsCategoryCard from '../components/mealscategorycard.vue';
+    
+    // import MealsCategoryCard from '../components/MealsCategoryCard.vue';
 
     const store = useStore();
     const mealsCategorys = computed(() => store.state.mealsCategorys)
