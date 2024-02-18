@@ -3,7 +3,10 @@
 <nav class="bg-white border-gray-200">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
     <router-link :to="{name: 'home'}" class="flex items-center">
-        <span class="text-gray-900 self-center text-2xl font-semibold whitespace-nowrap">Meals</span>
+        <div class="flex justify-center items-center gap-2">
+          <img class="h-12 w-12" src="../../public/meal-ease.png" alt="MealEase logo">
+          <span class="text-gray-900 self-center text-2xl font-semibold whitespace-nowrap">MealEase</span>
+        </div>
     </router-link>
     <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-default" aria-expanded="false">
         <span class="sr-only">Open main menu</span>
