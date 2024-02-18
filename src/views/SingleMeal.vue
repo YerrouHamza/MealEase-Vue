@@ -8,7 +8,7 @@
                 <h2 class="mb-10 text-xl font-extrabold tracking-tight leading-none text-gray-900 md:text-2xl lg:text-4xl" v-if="isLoad">
                     {{ meal.strMeal }}
                 </h2>
-                <div role="status" class="max-w-sm animate-pulse"><div class="bg-gray-200 h-4 mb-8 rounded-full"></div></div>
+                <div v-else role="status" class="max-w-sm animate-pulse"><div class="bg-gray-200 h-4 mb-8 rounded-full"></div></div>
 
                 <!-- meal details table -->
                 <div class="bg-gray-50 border border-gray-200 rounded-lg p-8 md:p-12" v-if="isLoad">
@@ -59,12 +59,12 @@
                 allowfullscreen
                 ></iframe>
             </div>
-            <div role="status" class="animate-pulse"><div class="bg-gray-200 h-full w-11/12"></div></div>
+            <div v-else role="status" class="animate-pulse"><div class="bg-gray-200 h-full w-11/12"></div></div>
         </div>
     
         <!-- Youtube video -->
         <p class="mb-8 text-lg font-normal text-gray-900 lg:text-xl" v-if="isLoad">{{ meal.strInstructions }}</p>
-        <div role="status" class="animate-pulse mb-10">
+        <div role="status" class="animate-pulse mb-10" v-else>
             <div class="h-3 bg-gray-200 rounded-full mb-3"></div>
             <div class="h-3 bg-gray-200 rounded-full mb-3"></div>
             <div class="h-3 bg-gray-200 rounded-full mb-3"></div>
