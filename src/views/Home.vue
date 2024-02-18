@@ -15,7 +15,7 @@
         </form>
     </header>
 
-    <section class="container max-w-screen-xl mx-auto mt-7 p-4">
+    <section class="container max-w-screen-xl mx-auto my-7 p-4">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-6">
             <MealsCard v-if="meals.length > 0"
                 v-for="meal in meals" :key="meal.idMeal"
