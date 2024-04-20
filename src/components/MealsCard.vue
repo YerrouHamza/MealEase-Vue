@@ -1,7 +1,7 @@
 <template>
     <div class="max-w-sm mx-auto md:mx-0 bg-white border border-gray-200 rounded-lg shadow">
         <div>
-            <img class="rounded-t-lg" :src="props.image" :alt="props.title" />
+            <img class="rounded-t-lg" :src="props.image || defaultImage" :alt="props.title" />
         </div>
         <div class="p-5">
             <h5 class="maxLines-2 mb-2 text-2xl font-bold tracking-tight text-gray-900">{{ props.title }}</h5>
@@ -18,6 +18,9 @@
 
 <script setup>
     const props = defineProps(['title', 'description', 'image', 'id'])
+
+    // get default image for meal
+    import defaultImage from '../assets/images/default-meal.jpg'
 </script>
 
 <style scoped>
