@@ -16,7 +16,10 @@
     </header>
 
     <section class="container max-w-screen-xl mx-auto my-7 p-4">
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-6">
+        <div 
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-6"
+            v-if="meals !== null"
+        >
             <MealsCard v-if="meals?.length > 0"
                 v-for="meal in meals" :key="meal.idMeal"
                 :title="meal.strMeal"
@@ -26,16 +29,19 @@
             />
             <SkeletonCardMeal v-for="n in 5" :key="n" v-else />
         </div>
+
+        <NotFound v-if="meals === null && meals?.length === underline"/>
     </section>
 </template>
 
 <script setup>
+    import MealsCard from '../components/MealsCard.vue';
+    import SkeletonCardMeal from '../components/SkeletonCardMeal.vue';
+    import NotFound from '../components/NotFound.vue';
+
     import { computed, onMounted, ref } from 'vue';
     import { useRouter, useRoute } from 'vue-router';
     import { useStore } from 'vuex';
-    
-    import MealsCard from '../components/MealsCard.vue';
-    import SkeletonCardMeal from '../components/SkeletonCardMeal.vue';
     
     const mealByname = ref('');
     const store = useStore();
