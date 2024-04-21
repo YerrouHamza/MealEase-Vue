@@ -2,7 +2,6 @@
   <Navbar />
   <section class="flex-1">
     <router-view />
-    
   </section>
   <Footer />
 </template>
